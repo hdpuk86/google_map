@@ -6,11 +6,17 @@ var MapWrapper = function(container, coords, zoom){
   this.markers = [];
 };
 
-MapWrapper.prototype.addMarker = function(coords){
+MapWrapper.prototype.addMarker = function(coords, info){
   var marker = new google.maps.Marker({
     position: coords,
-    map: this.googleMap
+    map: this.googleMap,
   });
+  var infoWindow = new google.maps.InfoWindow({
+    content: info
+  })
+  marker.addListener('click', function(){
+    infoWindow.open(marker.map, marker);
+  })
   this.markers.push(marker);
   return marker;
 };
@@ -38,4 +44,4 @@ MapWrapper.prototype.findMe = function(){
   geo.getCurrentPosition(function(position){
     map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
   })
-}
+};
