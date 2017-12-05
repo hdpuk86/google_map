@@ -30,4 +30,12 @@ MapWrapper.prototype.bounceMarkers = function(){
 MapWrapper.prototype.moveToSydney = function(){
   var sydney = {lat: -33.861293, lng: 151.210821};
   this.googleMap.setCenter(sydney);
+};
+
+MapWrapper.prototype.findMe = function(){
+  var geo = navigator.geolocation;
+  var map = this.googleMap;
+  geo.getCurrentPosition(function(position){
+    map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
+  })
 }

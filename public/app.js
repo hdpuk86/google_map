@@ -3,7 +3,7 @@ var initialize = function(){
   var center = {lat: 55.856946, lng: -4.244088};
   var interestingPlace = {lat: 55.847258, lng: -4.440114};
   var mainMap = new MapWrapper(container, center, 10);
-  codeClan = mainMap.addMarker(center);
+  var codeClan = mainMap.addMarker(center);
   mainMap.addMarker(interestingPlace);
   mainMap.addClickEvent();
 
@@ -15,12 +15,15 @@ var initialize = function(){
     content: codeClanInfo
   })
   codeClan.addListener('click', function(){
-    infoWindow.open(codeClan.map, codeClan);
+    infoWindow.open(mainMap, codeClan);
   })
 
   var newCityButton = document.getElementById('move-to-sydney');
-
   newCityButton.addEventListener('click', mainMap.moveToSydney.bind(mainMap));
+
+  var whereAmIButton = document.getElementById('find-me');
+  whereAmIButton.addEventListener('click', mainMap.findMe.bind(mainMap));
+
 };
 
 window.addEventListener('load', initialize);
