@@ -21,8 +21,11 @@ var initialize = function(){
   bounceButton.addEventListener('click', mainMap.bounceMarkers.bind(mainMap));
 
   //add button to move map view to sydney
-  var newCityButton = document.getElementById('move-to-sydney');
-  newCityButton.addEventListener('click', mainMap.moveToSydney.bind(mainMap));
+  var sydney = {lat: -33.861293, lng: 151.210821};
+  var goToSydneyButton = document.getElementById('move-to-sydney');
+  goToSydneyButton.addEventListener('click', function(){
+    mainMap.moveToNew(sydney);
+  });
 
   //add button to move map to user location
   var whereAmIButton = document.getElementById('find-me');
